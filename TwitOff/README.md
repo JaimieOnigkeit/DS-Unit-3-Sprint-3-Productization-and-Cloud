@@ -23,6 +23,6 @@ FLASK_APP=web_app flask run
 ```
 ## Windows:
 ```sh
-export FLASK_APP=web_app # one-time thing, to set the env var
+set FLASK_APP=web_app # one-time thing, to set the env var
 flask run
 ```

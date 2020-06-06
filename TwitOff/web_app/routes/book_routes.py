@@ -1,7 +1,7 @@
 # web_app/routes/book_routes.py
 
 from flask import Blueprint, jsonify, request, render_template #, flash, redirect
-from web_app.models import db, Book
+from web_app.models import db, Book, parse_records
 
 book_routes = Blueprint("book_routes", __name__)
 
@@ -23,6 +23,7 @@ def list_books_for_humans():
     #]
     book_records = Book.query.all()
     print(book_records)
+    books = parse_records(book_records)
     return render_template("books.html", message="Here's some books", books=books)
 
 @book_routes.route("/books/new")
