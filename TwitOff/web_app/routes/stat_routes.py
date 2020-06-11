@@ -7,6 +7,7 @@ from sklearn.linear_model import LogisticRegression # for example
 from web_app.models import User, Tweet
 from web_app.services.basilica_service import connection as basilica_connection
 
+
 stats_routes = Blueprint("stats_routes", __name__)
 
 @stats_routes.route("/predict", methods=["POST"])
@@ -28,7 +29,7 @@ def predict():
     user_b = User.query.filter_by(screen_name = screen_name_b).one()
     user_a_tweets = user_a.tweets # Tweet.query.filter_by(user_id = user_a.id).one()
     user_b_tweets = user_b.tweets # Tweet.query.filter_by(user_id = user_b.id).one()
-    #user_a_embeddings = [tweet.embedding for tweet in user_a_tweets]
+    #user_a_embeddings = [tweet.embedding for tweet in user_a_t `qweets]
     #user_b_embeddings = [tweet.embedding for tweet in user_b_tweets]
     print("USER A", user_a.screen_name, len(user_a.tweets))
     print("USER B", user_b.screen_name, len(user_b.tweets))
@@ -58,7 +59,7 @@ def predict():
     example_embedding = basilica_connection.embed_sentence(tweet_text, model="twitter")
     result = classifier.predict([example_embedding])
 
-    return render_template("prediction_results.html",
+    return render_template("results.html",
         screen_name_a=screen_name_a,
         screen_name_b=screen_name_b,
         tweet_text=tweet_text,
